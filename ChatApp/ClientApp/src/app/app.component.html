@@ -1,0 +1,39 @@
+<div class="jumbotron">
+  <h1 class="display-4">ChatApp: SignalR + Angular 8</h1>
+  <div class="col text-center">
+    <p class="lead">Developed with much ❤️ - Rio de Janeiro, 2020</p>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngFor="let msg of messages">
+    <div class="incoming_msg" *ngIf="msg.type == 'received'">
+      <div class="incoming_msg_img"></div>
+      <div class="received_msg">
+        <div class="received_withd_msg">
+          <p>
+            {{msg.message}}
+          </p>
+          <span class="time_date"> {{msg.date | date:'medium'}} </span>
+        </div>
+      </div>
+    </div>
+    <div class="outgoing_msg" *ngIf="msg.type == 'sent'">
+      <div class="sent_msg">
+        <p>
+          {{msg.message}}
+        </p>
+        <span class="time_date"> {{msg.date | date:'medium'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [value]="txtMessage" (input)="txtMessage=$event.target.value"
+      (keydown.enter)="sendMessage()" placeholder="Type a message" />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()"><i
+          class="fa fa-paper-plane-o" aria-hidden="true"></i>Send Message</button>
+    </div>
+  </div>
+</div>
+
